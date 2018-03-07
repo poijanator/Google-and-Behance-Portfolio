@@ -1,7 +1,7 @@
 <template>
-  <div class='jesse'>
+  <div  class='jesse'>
     <div class="j">
-      <div class='name'>
+      <div  ref='jesse' class='name'>
         <h1>Jesse Jesse</h1>
       </div>
       <div class='project-title'>
@@ -26,6 +26,13 @@
 export default {
   name: 'j',
   components: {
+  },
+  props:{
+  },
+  methods:{
+     getTop: function(){
+    console.log(this.$refs.jesse.height)
+    }
   },
   data () {
     return {

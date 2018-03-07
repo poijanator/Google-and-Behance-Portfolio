@@ -1,37 +1,46 @@
 <template>
-  <div class="home" v-scroll="scrollHigh">
+  <!-- <div class="home" v-scroll="scrollHigh"> -->
+  <div ref='home'  class="home">
     <div class="wrap-banner">
       <vue-particles color="#000000" :particleOpacity="0.7" linesColor="#ffffff" :particlesNumber="80" shapeType="circle" :particleSize="5" :linesWidth="2" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
       </vue-particles>
     </div>
-    <div class='welcome-msg'>
+    <div   class='welcome-msg'>
       <p>Welcome to portfolio portal</p>
       <h1>Designers created these projects using their skillset of API & DataViz</h1>
     </div>
     <nav v-bind:class="{ active : (scrollPosition >= 700)}">
       <img v-scroll-to="'.home'" class='logo-landingpage' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2FW%20JOV%20logo.png?1520054601329"></img>
       <ul>
-        <li v-bind:class="{ jactive : (scrollPosition >= 770 && scrollPosition <= 1630) && jactivenav}" class='jesse' v-scroll-to="'.j'">Jesse</li>
-        <li v-bind:class="{ oactive : (scrollPosition >= 1630 && scrollPosition <= 2490) && oactivenav}" class='oliver' v-scroll-to="'.o'">Oliver</li>
-        <li v-bind:class="{ vactive : (scrollPosition >= 2490) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
+        <li  v-bind:class="{ jactive : (scrollPosition >= 848 && scrollPosition <= 1709) && jactivenav}" class='jesse' v-scroll-to="'.j'">Jesse</li>
+        <li v-bind:class="{ oactive : (scrollPosition >= 1550 && scrollPosition <= 2410) && oactivenav}" class='oliver' v-scroll-to="'.o'">Oliver</li>
+        <li v-bind:class="{ vactive : (scrollPosition >= 2410) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
       </ul>
     </nav>
-    <J></J>
+    <J ></J>
     <O></O>
     <V></V>
   </div>
 </template>
 
 <script>
+import Parallax from './Parallax'
 import J from './J'
 import O from './O'
 import V from './V'
 export default {
   name: 'home',
+  props: {
+    speedFactor: {
+      default: 0.1,
+      type: Number
+    }
+  },
   components: {
     J,
     O,
-    V
+    V,
+    Parallax
   },
   methods: {
     scrollHigh: function() {
@@ -39,6 +48,13 @@ export default {
     }
   },
   mounted() {
+        var Jposition = this.$refs.home.children[3].getBoundingClientRect().top+ window.scrollY
+        var Oposition = this.$refs.home.children[4].offsetTop
+        var Vposition = this.$refs.home.children[5].offsetTop
+        console.log(Jposition)
+        console.log(Oposition)
+        console.log(Vposition)
+        // child[3].style.display='none'
     window.addEventListener('scroll', this.scrollHigh)
   },
   data() {
@@ -46,10 +62,11 @@ export default {
       scrollPosition: null,
       jactivenav: true,
       oactivenav: true,
-      vactivenav: true
+      vactivenav: true,
+      Jposition: null,
+      Oposition: null
     }
-  },
-
+  }
 }
 </script>
 
@@ -61,6 +78,7 @@ nav li.router-link-active,
 nav li.router-link-exact-active {
   cursor: pointer;
 }
+
 h1,
 h2 {
   font-weight: normal;
@@ -73,12 +91,15 @@ h2 {
 .jactive {
   color: #00D9FF;
 }
+
 .oactive {
   color: #000000;
 }
+
 .vactive {
   color: #4D0454;
 }
+
 .jesse {
   border-right: 0.1em solid #D6932E;
   padding-right: 1.5em;
