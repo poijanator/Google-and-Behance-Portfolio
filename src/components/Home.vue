@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-     <div class="wrap-banner">
+  <div class="home" v-scroll="scrollHigh">
+    <div class="wrap-banner">
       <vue-particles color="#000000" :particleOpacity="0.7" linesColor="#ffffff" :particlesNumber="80" shapeType="circle" :particleSize="5" :linesWidth="2" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
       </vue-particles>
     </div>
@@ -8,101 +8,158 @@
       <p>Welcome to portfolio portal</p>
       <h1>Designers created these projects using their skillset of API & DataViz</h1>
     </div>
-    <img class='logo-landingpage' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2FW%20JOV%20logo.png?1520054601329"></img>
-    <nav>
+    <nav v-bind:class="{ active : (scrollPosition >= 700)}">
+      <img v-scroll-to="'.home'" class='logo-landingpage' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2FW%20JOV%20logo.png?1520054601329"></img>
       <ul>
-        <li class='j' v-scroll-to="'.j'">Jesse</li>
-        <li class='o'>Oliver</li>
-        <li class='v'>Vignesh</li>
+        <li v-bind:class="{ jactive : (scrollPosition >= 770 && scrollPosition <= 1630) && jactivenav}" class='jesse' v-scroll-to="'.j'">Jesse</li>
+        <li v-bind:class="{ oactive : (scrollPosition >= 1630 && scrollPosition <= 2490) && oactivenav}" class='oliver' v-scroll-to="'.o'">Oliver</li>
+        <li v-bind:class="{ vactive : (scrollPosition >= 2490) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
       </ul>
     </nav>
     <J></J>
+    <O></O>
+    <V></V>
   </div>
 </template>
 
 <script>
 import J from './J'
+import O from './O'
+import V from './V'
 export default {
   name: 'home',
   components: {
-    J
+    J,
+    O,
+    V
   },
   methods: {
-  },
-  data () {
-    return {
-
+    scrollHigh: function() {
+      this.scrollPosition = window.scrollY
     }
-  }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.scrollHigh)
+  },
+  data() {
+    return {
+      scrollPosition: null,
+      jactivenav: true,
+      oactivenav: true,
+      vactivenav: true
+    }
+  },
+
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+nav li:hover,
+nav li.router-link-active,
+.logo-landingpage,
+nav li.router-link-exact-active {
+  cursor: pointer;
+}
 h1,
 h2 {
   font-weight: normal;
 }
-.home{
-  width:100%;
+
+.home {
+  width: 100%;
 }
-.j{
-  /*color: #00D9FF;*/
+
+.jactive {
+  color: #00D9FF;
 }
-.o{
-  /*color: #000000;*/
+.oactive {
+  color: #000000;
 }
-.v{
-  /*color: #4D0454;*/
+.vactive {
+  color: #4D0454;
 }
+.jesse {
+  border-right: 0.1em solid #D6932E;
+  padding-right: 1.5em;
+}
+
+.oliver {
+  border-right: 0.1em solid #D6932E;
+  padding-right: 1.6em;
+}
+
+.vignesh {}
+
 nav ul li {
   display: flex;
   height: auto;
   flex-direction: row;
   justify-content: center;
-  padding-top: 0.8vh;
   margin-bottom: 2vh;
-  font-size: 2em;
+  font-size: 1.75em;
   color: white;
   display: inline;
+  margin-right: 3vw;
+  font-family: 'Bree Serif', serif;
 }
 
 nav {
   position: fixed;
-  width:20vw;
-  text-align:right;
-  top: 3.5vh;
-  margin-right: 4vw;
-  right: -1vw;
+  width: 100%;
+  padding: 0.4em 0 0.4em 0;
+  height: auto;
+  text-align: right;
+  margin: 0 auto;
+  top: 0;
+  right: 0;
 }
+
+.active {
+  background-color: rgba(52, 52, 52, 1);
+  transition: background-color 0.8s ease;
+}
+
+.logo-landingpage {
+  width: 6vw;
+  height: 8vh;
+  position: absolute;
+  /* top: 2em; */
+  left: 2em;
+}
+
 .welcome-msg {
   display: flex;
   height: auto;
   flex-direction: column;
   justify-content: center;
-  width:60vw;
+  width: 60vw;
   height: auto;
   position: absolute;
   top: 32vh;
-  right:20vw;
-  color:#D6932E;
-}
-.welcome-msg p{
-  font-family:georgia;
-  font-size:1.5em;
-}
-.welcome-msg h1{
-  font-family: 'Bree Serif', serif;
-  font-size:2.5em;
-  line-height: 1.6;
-  }
-.wrap-banner {
-  height: 98.5vh;
-  width:100%;
+  right: 20vw;
+  color: #D6932E;
 }
 
+.welcome-msg p {
+  font-family: georgia;
+  font-size: 1.5em;
+}
+
+.welcome-msg h1 {
+  font-family: 'Bree Serif', serif;
+  font-size: 2.5em;
+  line-height: 1.6;
+}
+
+.wrap-banner {
+  height: 98.5vh;
+  width: 100%;
+}
+
+
 .particles-js {
-  background-color: rgba(52,57,63,0.8);
+  background-color: rgba(52, 57, 63, 1);
   background-size: "300px 100px";
   position: absolute;
   top: 0;
@@ -116,13 +173,7 @@ nav {
   top: 10px;
 }
 
-.logo-landingpage {
-  width: 8vw;
-  height: 10vh;
-  position: absolute;
-  top: 2em;
-  left: 2em;
-}
+
 
 ul {
   list-style-type: none;

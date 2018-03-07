@@ -10,16 +10,18 @@ import App from './App'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueScrollTo from 'vue-scrollto'
+import VueScroll from 'v-scroll'
 import VueParticles from './vue-particles'
 import Home from './components/Home'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(VueParticles)
+Vue.use(VueScroll)
 Vue.use(VueScrollTo, {
   container: 'body',
   duration: 1500,
   easing: 'ease',
-  offset: 0,
+  offset: -75,
   cancelable: true,
   onDone: false,
   onCancel: false,

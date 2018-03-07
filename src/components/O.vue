@@ -1,12 +1,12 @@
 <template>
-  <div class='jesse'>
-    <div class="j">
+  <div class='oliver'>
+    <div class="o">
       <div class='name'>
-        <h1>Jesse Jesse</h1>
+        <h1>Oliver Tilly</h1>
       </div>
       <div class='project-title'>
-        <h1>Google maps Finding events & location details</h1>
-        <img src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2Fgooglemaps_topic.png?1520144706562">
+        <h1>Behance API & Data Viz</h1>
+        <img src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2F6c08b3_e8b0ab79984a4bb1bd4228b21d982790_mv2_d_2072_2072_s_2.png?1520144682471">
       </div>
     </div>
     <div class='project-details'>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'j',
+  name: 'o',
   components: {
   },
   data () {
@@ -42,15 +42,18 @@ h2 {
   font-weight: bold;
   line-height: 1.6;
 }
+*{
+    color: white;
 
-.jesse {
+}
+.oliver {
   height: 100vh;
   width: 100%;
-  background-color: #00D9FF;
+  background-color: #000000;
   margin-top: 10vh;
 }
 
-.j {
+.o {
   display: flex;
   width:100%;
   flex-direction:column;
@@ -98,7 +101,7 @@ text-align: center;
 
 .name h1::first-letter {
   font-size: 200%;
-  color: black;
+  color: white;
 }
 
 
