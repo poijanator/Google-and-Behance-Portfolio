@@ -111,7 +111,6 @@ background-color: black; /* Green */
   margin-top: 1.75vh;
 text-align: center;
 }
-
 .name h1::first-letter {
   font-size: 200%;
   color: black;
