@@ -17,9 +17,10 @@
         <li v-bind:class="{ vactive : (scrollPosition >= 2410) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
       </ul>
     </nav>
-    <J ></J>
+    <J></J>
     <O></O>
     <V></V>
+
   </div>
 </template>
 
@@ -97,7 +98,7 @@ h2 {
 }
 
 .vactive {
-  color: #4D0454;
+  color: rgba(213, 166, 217, 0.5);
 }
 
 .jesse {
@@ -120,6 +121,7 @@ nav ul li {
   margin-bottom: 2vh;
   font-size: 1.75em;
   color: white;
+  line-height:50px;
   display: inline;
   margin-right: 3vw;
   font-family: 'Bree Serif', serif;
@@ -129,7 +131,7 @@ nav {
   position: fixed;
   width: 100%;
   padding: 0.4em 0 0.4em 0;
-  height: auto;
+  height: 100px;
   text-align: right;
   margin: 0 auto;
   top: 0;
@@ -142,8 +144,8 @@ nav {
 }
 
 .logo-landingpage {
-  width: 6vw;
-  height: 8vh;
+  width: auto;
+  height: 90px;
   position: absolute;
   /* top: 2em; */
   left: 2em;

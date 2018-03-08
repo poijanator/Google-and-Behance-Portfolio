@@ -18,7 +18,9 @@
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
     </div>
-
+  <button   class='oliverHome'>
+      <router-link v-bind:to="'/oliverHome'">oliverHome</router-link>
+    </button>
   </div>
 </template>
 
@@ -46,6 +48,17 @@ h2 {
     color: white;
 
 }
+.oliverHome {
+  height: 5%;
+  width: auto;
+background-color: black; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 .oliver {
   height: 100vh;
   width: 100%;

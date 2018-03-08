@@ -18,7 +18,9 @@
         <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
     </div>
-
+   <button   class='jesseHome'>
+      <router-link v-bind:to="'/jesseHome'">jesseHome</router-link>
+    </button>
   </div>
 </template>
 
@@ -49,7 +51,17 @@ h2 {
   font-weight: bold;
   line-height: 1.6;
 }
-
+.jesseHome {
+  height: 5%;
+  width: auto;
+background-color: black; /* Green */
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 .jesse {
   height: 100vh;
   width: 100%;

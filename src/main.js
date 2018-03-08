@@ -13,6 +13,9 @@ import VueScrollTo from 'vue-scrollto'
 import VueScroll from 'v-scroll'
 import VueParticles from './vue-particles'
 import Home from './components/Home'
+import vigneshHome from '../projects/vignesh/behance-api/Home'
+import tillyHome from '../projects/tilly/behance-api/Home'
+import jesseHome from '../projects/jesse/google-api/Home'
 import Parallax from './components/Parallax.vue'
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -34,9 +37,14 @@ Vue.use(VueScrollTo, {
 Vue.config.productionTip = false
 
 const routes = [
-  { path: '/', component: Home }
+  { path: '/', component: Home},
+  { path: '/vigneshHome', component: vigneshHome},
+  { path: '/oliverHome', component: tillyHome},
+  { path: '/jesseHome', component: jesseHome}
 ]
+  
 
+  
 const router = new VueRouter({
   routes,
   mode: 'history'

@@ -1,21 +1,20 @@
 <template>
   <div id="app">
     <!--<img src="./assets/logo.png">-->
-    <Home></Home>
+        <router-link v-bind:to="'/'">Home</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Home from './components/Home'
 export default {
   name: 'app',
-  components: {
-    Home
-  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  components:{
   }
 }
 </script>
