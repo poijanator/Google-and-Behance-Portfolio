@@ -1,26 +1,30 @@
 <template>
   <!-- <div class="home" v-scroll="scrollHigh"> -->
-  <div ref='home'  class="home">
+  <div ref='home' class="home">
     <div class="wrap-banner">
       <vue-particles color="#000000" :particleOpacity="0.7" linesColor="#ffffff" :particlesNumber="80" shapeType="circle" :particleSize="5" :linesWidth="2" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
       </vue-particles>
     </div>
-    <div   class='welcome-msg'>
+    <div class='welcome-msg'>
       <p>Welcome to portfolio portal</p>
       <h1>Designers created these projects using their skillset of API & DataViz</h1>
     </div>
     <nav v-bind:class="{ active : (scrollPosition >= 700)}">
       <img v-scroll-to="'.home'" class='logo-landingpage' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2FW%20JOV%20logo.png?1520054601329"></img>
       <ul>
-        <li  v-bind:class="{ jactive : (scrollPosition >= 848 && scrollPosition <= 1709) && jactivenav}" class='jesse' v-scroll-to="'.j'">Jesse</li>
-        <li v-bind:class="{ oactive : (scrollPosition >= 1550 && scrollPosition <= 2410) && oactivenav}" class='oliver' v-scroll-to="'.o'">Oliver</li>
-        <li v-bind:class="{ vactive : (scrollPosition >= 2410) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
+        <li v-bind:class="{ jactive : (scrollPosition >= position*2 && scrollPosition <= position * 3) && jactivenav}" class='jesse' v-scroll-to="'.j'">Jesse</li>
+        <li v-bind:class="{ oactive : (scrollPosition >= position * 3.1 && scrollPosition <= position *4.2) && oactivenav}" class='oliver' v-scroll-to="'.o'">Oliver</li>
+        <li v-bind:class="{ vactive : (scrollPosition >= position *4.2) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
       </ul>
     </nav>
+    <div>
+      <parallax :fixed='true'>
+      <img class='para' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2Fsaturn-with-rings-in-space-zoom-into-beautiful-planet-on-black-background-with-stars-and-sun-in-distance_ekv0blbxe__F0000.png?1519896515509"></img>
+    </parallax>
+    </div>
     <J></J>
     <O></O>
     <V></V>
-
   </div>
 </template>
 
@@ -46,16 +50,11 @@ export default {
   methods: {
     scrollHigh: function() {
       this.scrollPosition = window.scrollY
+      this.position = window.innerHeight
+      console.log(this.position)
     }
   },
   mounted() {
-        var Jposition = this.$refs.home.children[3].getBoundingClientRect().top+ window.scrollY
-        var Oposition = this.$refs.home.children[4].offsetTop
-        var Vposition = this.$refs.home.children[5].offsetTop
-        console.log(Jposition)
-        console.log(Oposition)
-        console.log(Vposition)
-        // child[3].style.display='none'
     window.addEventListener('scroll', this.scrollHigh)
   },
   data() {
@@ -64,8 +63,7 @@ export default {
       jactivenav: true,
       oactivenav: true,
       vactivenav: true,
-      Jposition: null,
-      Oposition: null
+      position: null
     }
   }
 }
@@ -84,7 +82,13 @@ h1,
 h2 {
   font-weight: normal;
 }
-
+.para{
+  width:100%;
+  height:300%;
+  position: absolute;
+  left: 0;
+  z-index: -999;
+}
 .home {
   width: 100%;
 }
@@ -121,7 +125,7 @@ nav ul li {
   margin-bottom: 2vh;
   font-size: 1.75em;
   color: white;
-  line-height:50px;
+  line-height: 50px;
   display: inline;
   margin-right: 3vw;
   font-family: 'Bree Serif', serif;
