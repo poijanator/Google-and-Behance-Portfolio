@@ -65,7 +65,7 @@ background-color: black; /* Green */
 .jesse {
   height: 100vh;
   width: 100%;
-  background-color: #00D9FF;
+  background-color: rgba(0,217,255,0.8);
   margin-top: 10vh;
 }
 
