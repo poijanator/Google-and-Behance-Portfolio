@@ -64,7 +64,7 @@ background-color: black; /* Green */
 .vignesh {
   height: 100vh;
   width: 100%;
-  background-color: #4D0454;
+  background-color: rgba(213, 166, 217, 0.5);
   margin-top: 10vh;
 }
 

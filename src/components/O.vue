@@ -45,7 +45,7 @@ h2 {
   line-height: 1.6;
 }
 *{
-    color: white;
+    color: black;
 
 }
 .oliverHome {
@@ -62,7 +62,7 @@ background-color: black; /* Green */
 .oliver {
   height: 100vh;
   width: 100%;
-  background-color: #000000;
+  background-color: rgba(255,255,255,0.8);
   margin-top: 10vh;
 }
 
@@ -114,7 +114,7 @@ text-align: center;
 
 .name h1::first-letter {
   font-size: 200%;
-  color: white;
+  color: black;
 }
 
 
