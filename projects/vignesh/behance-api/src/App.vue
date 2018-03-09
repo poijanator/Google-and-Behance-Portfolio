@@ -1,20 +1,18 @@
 <template>
-  <div id="app">
-    <!--<img src="./assets/logo.png">-->
-        <router-link v-bind:to="'/'">Main Home</router-link>
-    <router-view></router-view>
-  </div>
+  <div id="vignesh-app">
+ </div>
 </template>
 
 <script>
+import Home from './components/Home'
 export default {
-  name: 'app',
+  name: 'vignesh app',
+  components: {
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  },
-  components:{
   }
 }
 </script>
@@ -24,15 +22,6 @@ export default {
  :after,
  :before {
   box-sizing: border-box;
-}
-
-.img-landingpage {
-  width: 100vw;
-  height: 100vh
-}
-
-canvas {
-  height: 100%;
 }
 
 html,
@@ -46,7 +35,7 @@ body {
   background: #FFFFFF;
 }
 
-#app {
+#vignesh-app {
   height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
