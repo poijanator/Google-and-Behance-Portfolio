@@ -1,28 +1,29 @@
 <template>
-    <div class='vignesh'>
-      <div class="v">
-        <div class='name'>
-          <h1>Vignesh Murugan</h1>
-        </div>
-        <div class='project-title'>
-          <h1>Google maps Finding events & location details</h1>
-          <img src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2F6c08b3_e8b0ab79984a4bb1bd4228b21d982790_mv2_d_2072_2072_s_2.png?1520144682471">
-        </div>
+  <div class='vignesh'>
+    <div class="v">
+      <div class='name'>
+        <h1>Vignesh Murugan</h1>
       </div>
-      <div class='project-details'>
-        <div>
-          <img src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2Fdavid-poole1.jpg?1520147399044">
-        </div>
-        <div>
-          <h1>Project detail</h1>
-          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-      </div>
-       <button   class='vigneshHome'>
-      <router-link v-bind:to="'/vigneshHome'">vigneshHome</router-link>
-    </button>
+
     </div>
-   
+    <div class='project-details'>
+      <div>
+        <img src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2F6c08b3_e8b0ab79984a4bb1bd4228b21d982790_mv2_d_2072_2072_s_2.png?1520144682471">
+      </div>
+      <div>
+        <div class='project-title'>
+          <h1>Behance API & Data Viz</h1>
+        </div>
+        <h1>Project detail</h1>
+        <p>Main purpose of this single page site is to showcase our designers projects. I've done Ux design processes to make website pleasing to eye and for great user experience. I've used Vue framework and Data viz to show case overall statistics of designer's projects such as likes, comments, & appreciations.</p>
+     <button class='vigneshHome'>
+      <router-link v-bind:to="'/vigneshHome'">VIEW THE PROJECT</router-link>
+    </button>
+      </div>
+      
+    </div>
+    
+  </div>
 </template>
 
 <script>
@@ -46,17 +47,21 @@ h2 {
 }
 
 .vigneshHome {
-  height: 5%;
+  height: auto;
   width: auto;
-background-color: black; /* Green */
-    border: none;
-    color: white;
-    text-align: center;
+  background-color: black;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2em;
+  padding:0.8em;
+  margin-top:1em;
+}
+a{
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
-
+}
 * {
   color: white;
 }
@@ -86,9 +91,8 @@ background-color: black; /* Green */
 
 .project-details p {
   width: 50vw;
-  font-family: georgia;
-  text-align: left;
-  font-size: 1.75em;
+font-family: 'Merriweather', serif;  text-align: left;
+  font-size: 1.5em;
   line-height: 1.4;
 }
 
@@ -97,12 +101,13 @@ background-color: black; /* Green */
   height: 1em;
   font-family: 'Bree Serif', serif;
   text-align: left;
-  font-size: 2.25em;
+  font-size: 2em;
+  margin-top: 5vh;
 }
 
 .project-details img {
   width: 30vw;
-  height: 50vh;
+  height: auto;
   margin-top: 4vh;
   padding-right: 4vw;
 }
@@ -115,8 +120,9 @@ background-color: black; /* Green */
 
 .name h1 {
   height: auto;
-  margin-top: 1.75vh;
+  margin-top: 2vh;
   text-align: center;
+  font-size: 2.5em;
 }
 
 .name h1::first-letter {
@@ -128,8 +134,9 @@ background-color: black; /* Green */
 
 
 .project-title h1 {
-  margin-top: -2vh;
-  font-size: 1.5em;
+  margin-top: 2vh;
+  font-size: 3em;
+text-align: center;
 }
 
 ul {

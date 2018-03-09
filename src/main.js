@@ -13,7 +13,7 @@ import VueScrollTo from 'vue-scrollto'
 import VueScroll from 'v-scroll'
 import VueParticles from './vue-particles'
 import Home from './components/Home'
-import vigneshHome from '../projects/vignesh/behance-api/Home'
+import vigneshHome from '../projects/vignesh/behance-api/src/components/Home'
 import tillyHome from '../projects/tilly/behance-api/Home'
 import jesseHome from '../projects/jesse/google-api/Home'
 import Parallax from './components/Parallax.vue'
@@ -24,7 +24,7 @@ Vue.use(VueScroll)
 Vue.use(Parallax)
 Vue.use(VueScrollTo, {
   container: 'body',
-  duration: 1500,
+  duration: 1800,
   easing: 'ease',
   offset: -75,
   cancelable: true,

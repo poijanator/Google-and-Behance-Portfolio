@@ -51,7 +51,6 @@ export default {
     scrollHigh: function() {
       this.scrollPosition = window.scrollY
       this.position = window.innerHeight
-      console.log(this.position)
     }
   },
   mounted() {
