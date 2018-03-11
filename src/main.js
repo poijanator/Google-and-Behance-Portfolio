@@ -7,13 +7,13 @@ import './assets/tables.scss'
 
 import Vue from 'vue'
 import App from './App'
+import VigneshHome from '../projects/vignesh/behance-api/src/components/Home'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import VueScrollTo from 'vue-scrollto'
 import VueScroll from 'v-scroll'
 import VueParticles from './vue-particles'
 import Home from './components/Home'
-import vigneshHome from '../projects/vignesh/behance-api/src/components/Home'
 import tillyHome from '../projects/tilly/behance-api/Home'
 import jesseHome from '../projects/jesse/google-api/Home'
 import Parallax from './components/Parallax.vue'
@@ -38,9 +38,10 @@ Vue.config.productionTip = false
 
 const routes = [
   { path: '/', component: Home},
-  { path: '/vigneshHome', component: vigneshHome},
+  // { path: '/vigneshHome', component: vigneshHome},
   { path: '/oliverHome', component: tillyHome},
-  { path: '/jesseHome', component: jesseHome}
+  { path: '/jesseHome', component: jesseHome},
+  { path: '/vigneshHome', component: VigneshHome}
 ]
   
 

@@ -15,7 +15,7 @@
           <h1>Behance API & Data Viz</h1>
         </div>
         <h1>Project detail</h1>
-        <p>Main purpose of this single page site is to showcase our designers projects. I've done Ux design processes to make website pleasing to eye and for great user experience. I've used Vue framework and Data viz to show case overall statistics of designer's projects such as likes, comments, & appreciations.</p>
+        <p>Main purpose of this single page site is to showcase our designers projects. I've done Ux design processes to make website pleasing to eye and for great user experience. I've used Vue framework and Data viz to showcase overall statistics of designer's projects such as likes, comments, & appreciations.</p>
      <button class='vigneshHome'>
       <router-link v-bind:to="'/vigneshHome'">VIEW THE PROJECT</router-link>
     </button>
