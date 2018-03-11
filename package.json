@@ -1,8 +1,8 @@
 {
-  "name": "spa",
+  "name": "vue",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "samuelayo <ayoogundipe2005@gmail.com>",
+  "author": "",
   "private": true,
   "scripts": {
     "dev": "set PORT=8080 && node build/dev-server.js",
