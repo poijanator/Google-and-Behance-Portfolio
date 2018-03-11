@@ -16,9 +16,15 @@
       </div>
     </div>
     <h1>Our designers</h1>
-    <div v-for="designer in designers">
-      <img class='media-object' style='margin:0 auto;margin-bottom:2em;' v-bind:src='designer'>
+    <div class='designers' :id='`{profileimg-index}`' v-for="designer in designers" :class="{designersActive:designer.class == selected}" @click="selected = designer.id">
+      <img v-bind:src='designer'>
     </div>
+    <div class='designers-name' v-for='name in names'>
+      <h1>{{name}}</h1>
+      </div>
+     <div class='designers' v-for='field in fields'>
+      <p>{{field}}</p>
+      </div>
     <Projects @sendCoverimage='addCoverimage'></Projects>
   </div>
   <!--API=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c-->
@@ -32,7 +38,10 @@ export default {
     return {
       designers: [],
       coverImages: [],
+      fields:[],
+      names:[],
       time: true,
+      selected:undefined,
       timeimg: true,
       timeMimg:true
     }
@@ -47,47 +56,7 @@ export default {
       // console.log(this.image)
     }
   },
-  created() {
-    this.$http.jsonp('https://api.behance.net/v2/users?q=Sarel van Staden&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-      .then(response => {
-        this.designers.push(response.body.users[0].images[276])
-        // console.log(this.designers)
-      }).catch(e => {
-        console.log(e);
-      }
-      ),
 
-      // this.$http.jsonp('https://api.behance.net/v2/users?q=Nathan Chambers&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-      //   .then(response => {
-      //     // this.designers = response
-      //     // console.log(response.body.users[0].images[276])
-      //     console.log(response)
-      //     this.designers.push(response.body.users[0].images[276])
-      //   }).catch(e => {
-      //     console.log(e);
-      //   }
-      //   )
-      this.$http.jsonp('https://api.behance.net/v2/users?q=Elena Galitsky&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-        .then(response => {
-          // this.designers = response
-          // console.log(response.body.users[0].images[276])
-          console.log(response)
-          this.designers.push(response.body.users[0].images[276])
-        }).catch(e => {
-          console.log(e);
-        }
-        )
-    // this.$http.jsonp('https://api.behance.net/v2/users?q=Roman Yarmishko&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-    //   .then(response => {
-    //     // this.designers = response
-    //     // console.log(response.body.users[0].images[276])
-    //     console.log(response)
-    //     // this.designers.push(response.body.users[0].images[276])
-    //   }).catch(e => {
-    //     console.log(e);
-    //   }
-    //   )
-  },
   created () {
       var self = this;
       setInterval(function () {
@@ -96,6 +65,54 @@ export default {
        setInterval(function () {
          self.timeimg = !self.timeimg
       }, 5000)
+
+      this.$http.jsonp('https://api.behance.net/v2/users?q=Sarel van Staden&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+      .then(response => {
+        this.designers.push(response.body.users[0].images[276])
+        this.fields.push(response.body.users[0].fields[0])
+        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+        // console.log(this.designers)
+      }).catch(e => {
+        console.log(e);
+      }
+      ),
+
+      this.$http.jsonp('https://api.behance.net/v2/users?q=Nathan Chambers&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+        .then(response => {
+          // this.designers = response
+          // console.log(response.body.users[0].images[276])
+          console.log(response)
+        this.fields.push(response.body.users[0].fields[0])
+          this.designers.push(response.body.users[0].images[276])
+        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+        }).catch(e => {
+          console.log(e);
+        }
+        ),
+      this.$http.jsonp('https://api.behance.net/v2/users?q=Elena Galitsky&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+        .then(response => {
+          // this.designers = response
+          // console.log(response.body.users[0].images[276])
+          console.log(response)
+        this.fields.push(response.body.users[0].fields[0])
+          this.designers.push(response.body.users[0].images[276])
+        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+        }).catch(e => {
+          console.log(e);
+        }
+        ),
+    this.$http.jsonp('https://api.behance.net/v2/users?q=Danny Carlsen&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+      .then(response => {
+        // this.designers = response
+        // console.log(response.body.users[0].images[276])
+        console.log(response)
+        this.fields.push(response.body.users[0].fields[0])
+        this.designers.push(response.body.users[0].images[276])
+        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+      }).catch(e => {
+        console.log(e);
+      }
+      )
     }
 }
 </script>
@@ -109,7 +126,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   background-color: black;
-  transition: background-color 0.6s ease-in;
+  transition: background-color 0.4s ease-in;
   align-items: left;
 }
 
@@ -119,7 +136,7 @@ export default {
 }
 
 .Ccover {
-  background-color: rgba(213, 166, 217, 0.5);
+  background-color: rgba(113, 181, 235, 0.5);
   transition: background-color 0.4s ease-in;
 }
 .Ccoverimg{
@@ -149,11 +166,13 @@ export default {
   overflow: hidden;
   position: absolute;
   right: 10vw;
-  top: 35vh;
+  top: 30vh;
 }
 
 .welcome-img img {
   width: 40%;
+  height:310px;
+  
 }
 
 .cover-img {
@@ -163,7 +182,7 @@ export default {
 }
 
 .img-0 {
-  animation-name: animate;
+  animation-name: bounce;
   animation-duration: 3s;
   animation-iteration-count: 4;
   animation-delay: 1s;
@@ -173,16 +192,50 @@ export default {
 }
 
 .img-1 {
-  animation-name: animate;
+  animation-name: bounce;
   animation-duration: 3s;
   animation-iteration-count: 4;
   animation-delay: 1s;
   transform-origin: right center;
   animation-direction: alternate;
   animation-timing-function: ease-in;
+
+}
+.designers{
+  width:25%;
+  height:auto;
+  float:left;
 }
 
 
+.designers img{
+  width:75%;
+  height:auto;
+}
+.designersActive{
+  border:18px solid maroon;
+}
+.designers p{
+  width:35%;
+  height:auto;
+  margin:0 auto;
+}
+.designers-name{
+  width:25%;
+  height:auto;
+  margin:0 auto;
+  float:left;
+}
+.designers-name{
+  font-size: 0.7em;
+}
+
+
+@keyframes bounce {
+        0%{ transform:scale(0.99); }
+        50%{transform:scale(1.01);  }
+        100%{ transform:scale(1); }
+}
 
 
 

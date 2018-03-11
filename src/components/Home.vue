@@ -12,9 +12,9 @@
     <nav v-bind:class="{ active : (scrollPosition >= 700)}">
       <img v-scroll-to="'.home'" class='logo-landingpage' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2FW%20JOV%20logo.png?1520054601329"></img>
       <ul>
-        <li v-bind:class="{ jactive : (scrollPosition >= position*2 && scrollPosition <= position * 3) && jactivenav}" class='jesse' v-scroll-to="'.j'">Jesse</li>
-        <li v-bind:class="{ oactive : (scrollPosition >= position * 3.1 && scrollPosition <= position *4.2) && oactivenav}" class='oliver' v-scroll-to="'.o'">Oliver</li>
-        <li v-bind:class="{ vactive : (scrollPosition >= position *4.2) && vactivenav}" class='vignesh' v-scroll-to="'.v'">Vignesh</li>
+        <li v-bind:class="{ jactive : (scrollPosition >= position*1.98 && scrollPosition <= position * 2.98) && jactivenav}" class='jessenav' v-scroll-to="'.jesse'">Jesse</li>
+        <li v-bind:class="{ oactive : (scrollPosition >= position * 3 && scrollPosition <= position *4.098) && oactivenav}" class='olivernav' v-scroll-to="'.oliver'">Oliver</li>
+        <li v-bind:class="{ vactive : (scrollPosition >= position *4.098) && vactivenav}" class='vigneshnav' v-scroll-to="'.vignesh'">Vignesh</li>
       </ul>
     </nav>
     <div>
@@ -104,17 +104,16 @@ h2 {
   color: rgba(213, 166, 217, 0.5);
 }
 
-.jesse {
+.jessenav {
   border-right: 0.1em solid #D6932E;
   padding-right: 1.5em;
 }
 
-.oliver {
+.olivernav {
   border-right: 0.1em solid #D6932E;
   padding-right: 1.6em;
 }
 
-.vignesh {}
 
 nav ul li {
   display: flex;
