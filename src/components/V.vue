@@ -67,7 +67,7 @@ a{
 }
 
 .vignesh {
-  height: 100vh;
+  height: 93vh;
   width: 100%;
   background-color: rgba(213, 166, 217, 0.5);
   margin-top: 10vh;
