@@ -6,13 +6,11 @@
         <h1>Showcasing our designer's work</h1>
         <button>View our designers</button>
       </div>
-      <div class='welcome-img'>
-        <div class='img-0'>
-          <img class='cover-img' style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[0]'>
-        </div>
-        <div v-bind:class='{Ccoverimg: timeimg}' class='img-1'>
-          <img class='cover-img' style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[1]'>
-        </div>
+      <div v-if='showimg' class='welcome-img'>
+          <img style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[0]'>
+      </div>
+       <div v-if='showimg1' class='welcome-img1'>
+          <img style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[1]'>
       </div>
     </div>
     <div class='designers-section'>
@@ -43,10 +41,10 @@ export default {
       fields: [],
       clicked: false,
       names: [],
-      time: true,
+      time:true,
       selected: undefined,
-      timeimg: true,
-      timeMimg: true
+      showimg: true,
+      showimg1: false
     }
   },
   components: {
@@ -68,9 +66,12 @@ export default {
     setInterval(function() {
       self.time = !self.time
     }, 5000)
-    setInterval(function() {
-      self.timeimg = !self.timeimg
-    }, 5000)
+
+    let timerId = setTimeout(function tick() {
+      self.showimg = !self.showimg
+      timerId = setTimeout(tick, 8000);
+    }, 3000)
+   
 
     this.$http.jsonp('https://api.behance.net/v2/users?q=Sarel van Staden&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
       .then(response => {
@@ -146,17 +147,8 @@ export default {
   transition: background-color 0.4s ease-in;
 }
 
-.Ccoverimg {
-  visibility: hidden;
-  transition: visibility 0.4s ease-in;
-  transition-delay: 13s;
-}
 
-.CCcoverimg {
-  visibility: hidden;
-  transition: visibility 0.4s ease-in;
-  transition-delay: 13s;
-}
+
 
 .welcome-page-details h1 {
   font-size: 3em;
@@ -177,26 +169,27 @@ export default {
   height: 310px;
   overflow: hidden;
   position: absolute;
-  right: 10vw;
+  right: 1vw;
   top: 30vh;
 }
 
-.welcome-img img {
+.welcome-img img{
   width: 40%;
   height: 310px;
 }
-
-.cover-img {}
-
-.img-0 {
-  animation: bounce 3s ease-in 1s, change 9s ease-in 4s infinite;
-  margin-bottom:10em;
+.welcome-img1 {
+  width: 64%;
+  height: 310px;
+  overflow: hidden;
+  position: absolute;
+  right: 1vw;
+  top: 30vh;
 }
 
-.img-1 {
-  animation: bounce 3s ease-in 1s , change 9s ease-in 4s infinite;
+.welcome-img1 img {
+  width: 40%;
+  height: 310px;
 }
-
 .designers-section {
   width: 80%;
   margin: 3em auto 3em auto;
@@ -237,30 +230,4 @@ export default {
 }
 
 
-@keyframes bounce {
-  0% {
-    transform: scale(0.99);
-  }
-  50% {
-    transform: scale(1.01);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes change {
-  0% {
-    transform: translateY(0);
-  }
-  25%{
-    transition: opacity 0 ease-out;
-  }
-  50% {
-    transform: translateY(-550px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
 </style>
