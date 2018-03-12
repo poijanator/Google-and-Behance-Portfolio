@@ -8,23 +8,25 @@
       </div>
       <div class='welcome-img'>
         <div class='img-0'>
-          <img  class='cover-img' style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[0]'>
+          <img class='cover-img' style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[0]'>
         </div>
-          <div  v-bind:class='{Ccoverimg: timeimg}' class='img-1'>
+        <div v-bind:class='{Ccoverimg: timeimg}' class='img-1'>
           <img class='cover-img' style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[1]'>
         </div>
       </div>
     </div>
-    <h1>Our designers</h1>
-    <div class='designers' :id='`{profileimg-index}`' v-for="designer in designers" :class="{designersActive:designer.class == selected}" @click="selected = designer.id">
-      <img v-bind:src='designer'>
+    <div class='designers-section'>
+      <h1>Our designers</h1>
+      <div class='designers' v-for="designer in designers" v-bind:class="{selected: designer.clicked}" v-on:click="toggle(designer.clicked)">
+        <img v-bind:src='designer'>
+      </div>
+      <div class='designers-name' v-for='name in names'>
+        <h1>{{name}}</h1>
+      </div>
+      <div class='designers' v-for='field in fields'>
+        <p>{{field}}</p>
+      </div>
     </div>
-    <div class='designers-name' v-for='name in names'>
-      <h1>{{name}}</h1>
-      </div>
-     <div class='designers' v-for='field in fields'>
-      <p>{{field}}</p>
-      </div>
     <Projects @sendCoverimage='addCoverimage'></Projects>
   </div>
   <!--API=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c-->
@@ -38,12 +40,13 @@ export default {
     return {
       designers: [],
       coverImages: [],
-      fields:[],
-      names:[],
+      fields: [],
+      clicked: false,
+      names: [],
       time: true,
-      selected:undefined,
+      selected: undefined,
       timeimg: true,
-      timeMimg:true
+      timeMimg: true
     }
   },
   components: {
@@ -54,23 +57,26 @@ export default {
       this.coverImages = data
 
       // console.log(this.image)
+    },
+    toggle: function(clicked) {
+      clicked = !clicked
     }
   },
 
-  created () {
-      var self = this;
-      setInterval(function () {
-         self.time = !self.time
-      }, 5000)
-       setInterval(function () {
-         self.timeimg = !self.timeimg
-      }, 5000)
+  created() {
+    var self = this;
+    setInterval(function() {
+      self.time = !self.time
+    }, 5000)
+    setInterval(function() {
+      self.timeimg = !self.timeimg
+    }, 5000)
 
-      this.$http.jsonp('https://api.behance.net/v2/users?q=Sarel van Staden&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+    this.$http.jsonp('https://api.behance.net/v2/users?q=Sarel van Staden&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
       .then(response => {
         this.designers.push(response.body.users[0].images[276])
         this.fields.push(response.body.users[0].fields[0])
-        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+        this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
         // console.log(this.designers)
       }).catch(e => {
         console.log(e);
@@ -82,9 +88,9 @@ export default {
           // this.designers = response
           // console.log(response.body.users[0].images[276])
           console.log(response)
-        this.fields.push(response.body.users[0].fields[0])
+          this.fields.push(response.body.users[0].fields[0])
           this.designers.push(response.body.users[0].images[276])
-        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+          this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
         }).catch(e => {
           console.log(e);
         }
@@ -94,26 +100,26 @@ export default {
           // this.designers = response
           // console.log(response.body.users[0].images[276])
           console.log(response)
-        this.fields.push(response.body.users[0].fields[0])
+          this.fields.push(response.body.users[0].fields[0])
           this.designers.push(response.body.users[0].images[276])
-        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
+          this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
         }).catch(e => {
           console.log(e);
         }
         ),
-    this.$http.jsonp('https://api.behance.net/v2/users?q=Danny Carlsen&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-      .then(response => {
-        // this.designers = response
-        // console.log(response.body.users[0].images[276])
-        console.log(response)
-        this.fields.push(response.body.users[0].fields[0])
-        this.designers.push(response.body.users[0].images[276])
-        this.names.push(response.body.users[0].first_name+response.body.users[0].last_name)
-      }).catch(e => {
-        console.log(e);
-      }
-      )
-    }
+      this.$http.jsonp('https://api.behance.net/v2/users?q=Danny Carlsen&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+        .then(response => {
+          // this.designers = response
+          // console.log(response.body.users[0].images[276])
+          console.log(response)
+          this.fields.push(response.body.users[0].fields[0])
+          this.designers.push(response.body.users[0].images[276])
+          this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
+        }).catch(e => {
+          console.log(e);
+        }
+        )
+  }
 }
 </script>
 
@@ -136,16 +142,22 @@ export default {
 }
 
 .Ccover {
-  background-color: rgba(113, 181, 235, 0.5);
+  background-color: rgba(70, 139, 201, 1);
   transition: background-color 0.4s ease-in;
 }
-.Ccoverimg{
+
+.Ccoverimg {
   visibility: hidden;
-  transition: visibility 0.5s ease-in;
+  transition: visibility 0.4s ease-in;
+  transition-delay: 13s;
 }
-.CCcoverimg{
+
+.CCcoverimg {
   visibility: hidden;
+  transition: visibility 0.4s ease-in;
+  transition-delay: 13s;
 }
+
 .welcome-page-details h1 {
   font-size: 3em;
   color: white;
@@ -171,72 +183,84 @@ export default {
 
 .welcome-img img {
   width: 40%;
-  height:310px;
-  
+  height: 310px;
 }
 
-.cover-img {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
+.cover-img {}
 
 .img-0 {
-  animation-name: bounce;
-  animation-duration: 3s;
-  animation-iteration-count: 4;
-  animation-delay: 1s;
-  transform-origin: right center;
-  animation-direction: alternate;
-  animation-timing-function: ease-in;
+  animation: bounce 3s ease-in 1s, change 9s ease-in 4s infinite;
+  margin-bottom:10em;
 }
 
 .img-1 {
-  animation-name: bounce;
-  animation-duration: 3s;
-  animation-iteration-count: 4;
-  animation-delay: 1s;
-  transform-origin: right center;
-  animation-direction: alternate;
-  animation-timing-function: ease-in;
-
-}
-.designers{
-  width:25%;
-  height:auto;
-  float:left;
+  animation: bounce 3s ease-in 1s , change 9s ease-in 4s infinite;
 }
 
+.designers-section {
+  width: 80%;
+  margin: 3em auto 3em auto;
+}
 
-.designers img{
-  width:75%;
-  height:auto;
+.designers {
+  width: 25%;
+  height: auto;
+  float: left;
+  margin: 1em auto;
 }
-.designersActive{
-  border:18px solid maroon;
+
+
+.designers img {
+  width: 75%;
+  height: auto;
 }
-.designers p{
-  width:35%;
-  height:auto;
-  margin:0 auto;
+
+.selected {
+  border: 18px solid maroon;
 }
-.designers-name{
-  width:25%;
-  height:auto;
-  margin:0 auto;
-  float:left;
+
+.designers p {
+  width: 35%;
+  height: auto;
+  margin: 0 auto;
 }
-.designers-name{
+
+.designers-name {
+  width: 25%;
+  height: auto;
+  margin: 0 auto;
+  float: left;
+}
+
+.designers-name {
   font-size: 0.7em;
 }
 
 
 @keyframes bounce {
-        0%{ transform:scale(0.99); }
-        50%{transform:scale(1.01);  }
-        100%{ transform:scale(1); }
+  0% {
+    transform: scale(0.99);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-
-
+@keyframes change {
+  0% {
+    transform: translateY(0);
+  }
+  25%{
+    transition: opacity 0 ease-out;
+  }
+  50% {
+    transform: translateY(-550px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 </style>

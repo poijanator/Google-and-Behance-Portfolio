@@ -1,7 +1,7 @@
 <template>
   <div class='projects'>
-    <h1>projects</h1>
-  <h2 v-for="project in projectsAuthor1">{{project[8].name}}</h2>
+    <!--<h1>projects</h1>
+  <h2 v-for="project in projectsAuthor1">{{project[8].name}}</h2>-->
   </div>
 </template>
 

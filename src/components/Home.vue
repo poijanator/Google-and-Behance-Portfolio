@@ -12,14 +12,14 @@
     <nav v-bind:class="{ active : (scrollPosition >= 700)}">
       <img v-scroll-to="'.home'" class='logo-landingpage' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2FW%20JOV%20logo.png?1520054601329"></img>
       <ul>
-        <li v-bind:class="{ jactive : (scrollPosition >= position*1.98 && scrollPosition <= position * 2.98) && jactivenav}" class='jessenav' v-scroll-to="'.jesse'">Jesse</li>
-        <li v-bind:class="{ oactive : (scrollPosition >= position * 3 && scrollPosition <= position *4.098) && oactivenav}" class='olivernav' v-scroll-to="'.oliver'">Oliver</li>
-        <li v-bind:class="{ vactive : (scrollPosition >= position *4.098) && vactivenav}" class='vigneshnav' v-scroll-to="'.vignesh'">Vignesh</li>
+        <li v-bind:class="{ jactive : (scrollPosition >= position*1 && scrollPosition <= position * 2) && jactivenav}" class='jessenav' v-scroll-to="'.jesse'">Jesse</li>
+        <li v-bind:class="{ oactive : (scrollPosition >= position * 2 && scrollPosition <= position *3) && oactivenav}" class='olivernav' v-scroll-to="'.oliver'">Oliver</li>
+        <li v-bind:class="{ vactive : (scrollPosition >= position *3) && vactivenav}" class='vigneshnav' v-scroll-to="'.vignesh'">Vignesh</li>
       </ul>
     </nav>
     <div>
-      <parallax :fixed='true'>
-      <img class='para' src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2Fsaturn-with-rings-in-space-zoom-into-beautiful-planet-on-black-background-with-stars-and-sun-in-distance_ekv0blbxe__F0000.png?1519896515509"></img>
+      <parallax class='para' :fixed='true'>
+      <img  src="https://cdn.glitch.com/6030f993-85bf-48c3-ba08-201d282bac21%2Fsaturn-with-rings-in-space-zoom-into-beautiful-planet-on-black-background-with-stars-and-sun-in-distance_ekv0blbxe__F0000.png?1519896515509"></img>
     </parallax>
     </div>
     <J></J>
@@ -81,9 +81,11 @@ h1,
 h2 {
   font-weight: normal;
 }
+.navcolor{
+  color:white;
+}
 .para{
   width:100%;
-  height:300%;
   position: absolute;
   left: 0;
   z-index: -999;
