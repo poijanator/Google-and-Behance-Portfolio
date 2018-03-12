@@ -1,28 +1,29 @@
 <template>
   <!-- <div class="home" v-scroll="scrollHigh"> -->
   <div class="home">
-    <div v-bind:class='{Ccover: time}' class='welcome-page'>
+    <div class='welcome-page'>
       <div class='welcome-page-details'>
         <h1>Showcasing our designer's work</h1>
-        <button>View our designers</button>
+        <button v-scroll-to="'.designers-section'">View our designers</button>
       </div>
-      <div v-if='showimg' class='welcome-img'>
-          <img style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[0]'>
+      <div v-if='image1' class='welcome-img'>
+        <img style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[0]'>
       </div>
-       <div v-if='showimg1' class='welcome-img1'>
-          <img style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[1]'>
+      <div v-if='image2' class='welcome-img'>
+        <img style='margin:0 auto;margin-bottom:2em;' v-bind:src='coverImages[1]'>
       </div>
     </div>
+
     <div class='designers-section'>
       <h1>Our designers</h1>
-      <div class='designers' v-for="designer in designers" v-bind:class="{selected: designer.clicked}" v-on:click="toggle(designer.clicked)">
-        <img v-bind:src='designer'>
-      </div>
-      <div class='designers-name' v-for='name in names'>
-        <h1>{{name}}</h1>
-      </div>
-      <div class='designers' v-for='field in fields'>
-        <p>{{field}}</p>
+      <div class='designers'>
+        <div v-for="(designer,index) in designers"  :class="{highlight:designer.field == selected}" @click="selected = designer.field">
+          <img v-bind:src='designer.profile'>
+          <h2>{{designer.name}}</h2>
+          <p>{{designer.field}}</p>
+          <div :class="{arrowdown:designer.field == selected}"></div>
+        </div>
+
       </div>
     </div>
     <Projects @sendCoverimage='addCoverimage'></Projects>
@@ -41,10 +42,9 @@ export default {
       fields: [],
       clicked: false,
       names: [],
-      time:true,
-      selected: undefined,
-      showimg: true,
-      showimg1: false
+      selected: '',
+      image1: true,
+      image2: false
     }
   },
   components: {
@@ -62,22 +62,17 @@ export default {
   },
 
   created() {
-    var self = this;
+    var self = this
     setInterval(function() {
-      self.time = !self.time
-    }, 5000)
-
-    let timerId = setTimeout(function tick() {
-      self.showimg = !self.showimg
-      timerId = setTimeout(tick, 8000);
-    }, 3000)
-   
+      self.image1 = !self.image1
+    }, 4000)
+    setInterval(function() {
+      self.image2 = !self.image2
+    }, 4000)
 
     this.$http.jsonp('https://api.behance.net/v2/users?q=Sarel van Staden&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
       .then(response => {
-        this.designers.push(response.body.users[0].images[276])
-        this.fields.push(response.body.users[0].fields[0])
-        this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
+        this.designers.push({ profile: response.body.users[0].images[276], field: response.body.users[0].fields[0], name: (response.body.users[0].first_name + response.body.users[0].last_name) })
         // console.log(this.designers)
       }).catch(e => {
         console.log(e);
@@ -89,33 +84,27 @@ export default {
           // this.designers = response
           // console.log(response.body.users[0].images[276])
           console.log(response)
-          this.fields.push(response.body.users[0].fields[0])
-          this.designers.push(response.body.users[0].images[276])
-          this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
+          this.designers.push({ profile: response.body.users[0].images[276], field: response.body.users[0].fields[0], name: (response.body.users[0].first_name + response.body.users[0].last_name) })
         }).catch(e => {
           console.log(e);
         }
-        ),
-      this.$http.jsonp('https://api.behance.net/v2/users?q=Elena Galitsky&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-        .then(response => {
-          // this.designers = response
-          // console.log(response.body.users[0].images[276])
-          console.log(response)
-          this.fields.push(response.body.users[0].fields[0])
-          this.designers.push(response.body.users[0].images[276])
-          this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
-        }).catch(e => {
-          console.log(e);
-        }
-        ),
+        )
+    this.$http.jsonp('https://api.behance.net/v2/users?q=Elena Galitsky&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+      .then(response => {
+        // this.designers = response
+        // console.log(response.body.users[0].images[276])
+        console.log(response)
+        this.designers.push({ profile: response.body.users[0].images[276], field: response.body.users[0].fields[0], name: (response.body.users[0].first_name + response.body.users[0].last_name) })
+      }).catch(e => {
+        console.log(e);
+      }
+      ),
       this.$http.jsonp('https://api.behance.net/v2/users?q=Danny Carlsen&api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
         .then(response => {
           // this.designers = response
           // console.log(response.body.users[0].images[276])
           console.log(response)
-          this.fields.push(response.body.users[0].fields[0])
-          this.designers.push(response.body.users[0].images[276])
-          this.names.push(response.body.users[0].first_name + response.body.users[0].last_name)
+          this.designers.push({ profile: response.body.users[0].images[276], field: response.body.users[0].fields[1], name: (response.body.users[0].first_name + response.body.users[0].last_name) })
         }).catch(e => {
           console.log(e);
         }
@@ -140,15 +129,25 @@ export default {
 .welcome-page-details {
   width: 60%;
   height: 30%;
+  text-align: center;
+  margin: 3em;
 }
 
-.Ccover {
-  background-color: rgba(70, 139, 201, 1);
-  transition: background-color 0.4s ease-in;
+.highlight {
+  border: 18px solid maroon;
+  position: relative;
 }
 
-
-
+.arrowdown {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid maroon;
+  position: absolute;
+  bottom: -2em;
+  right: 7.5em;
+}
 
 .welcome-page-details h1 {
   font-size: 3em;
@@ -165,69 +164,48 @@ export default {
 }
 
 .welcome-img {
-  width: 64%;
+  width: 40%;
   height: 310px;
   overflow: hidden;
   position: absolute;
   right: 1vw;
   top: 30vh;
+  animation: bounce 3s;
 }
 
-.welcome-img img{
+.welcome-img img {
   width: 40%;
   height: 310px;
 }
-.welcome-img1 {
-  width: 64%;
-  height: 310px;
-  overflow: hidden;
-  position: absolute;
-  right: 1vw;
-  top: 30vh;
-}
 
-.welcome-img1 img {
-  width: 40%;
-  height: 310px;
+.designers-section{
+width:100%;
 }
-.designers-section {
-  width: 80%;
-  margin: 3em auto 3em auto;
-}
-
 .designers {
-  width: 25%;
-  height: auto;
-  float: left;
-  margin: 1em auto;
+width:100%;
+display: flex;
+justify-content: space-around;
+
+}
+
+#designer-0 {
+  
+}
+
+#designer-0 img {
+
 }
 
 
-.designers img {
-  width: 75%;
-  height: auto;
+@keyframes bounce {
+  0% {
+    transform: scale(0.96);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
-
-.selected {
-  border: 18px solid maroon;
-}
-
-.designers p {
-  width: 35%;
-  height: auto;
-  margin: 0 auto;
-}
-
-.designers-name {
-  width: 25%;
-  height: auto;
-  margin: 0 auto;
-  float: left;
-}
-
-.designers-name {
-  font-size: 0.7em;
-}
-
-
 </style>
