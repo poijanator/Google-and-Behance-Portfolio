@@ -16,19 +16,19 @@ export default {
   },
 
   created() {
-     this.$http.jsonp('https://api.behance.net/v2/users/126487/projects?api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
-      .then(response => {
-        this.coverImage.push(response.body.projects[4].covers[404])
-        console.log(response)
-        // console.log( this.coverImage)
-      }).catch(e => {
-        console.log(e);
-      }),
+    //  this.$http.jsonp('https://api.behance.net/v2/users/126487/projects?api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
+    //   .then(response => {
+    //     // this.coverImage.push(response.body.projects[4].covers[404])
+    //     console.log(response)
+    //     // console.log( this.coverImage)
+    //   }).catch(e => {
+    //     console.log(e);
+    //   }),
     this.$http.jsonp('https://api.behance.net/v2/users/5501311/projects?api_key=IryTnzmJFPkXW4oKRd2kQSaYTanjKD7c')
       .then(response => {
         // this.coverImage.push(response.body.projects[1].covers[404])
-        // this.coverImage.push(response.body.projects[3].covers[404])
         this.coverImage.push(response.body.projects[5].covers[404])
+        this.coverImage.push(response.body.projects[1].covers[404])
         this.projectsAuthor1.push(response.body.projects)
         console.log(response)
         // console.log( this.coverImage)
